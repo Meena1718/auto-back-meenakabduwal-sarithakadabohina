@@ -49,18 +49,6 @@ function createReservationRequest() {
 }
 
 
-/*function deleteReservationRequest(idToDelete){
-    cy.request({
-        method: 'DELETE',
-        url:'http://localhost:3000/api/reservation/'+idToDelete,
-        headers: {
-            'X-User-Auth':JSON.stringify(Cypress.env().loginToken), 
-            'Content-Type': 'application/json'
-        },                              
-    }).then((response => {
-        expect(response.status).to.eq(200)
-    }))
-}*/
 
 function performLogout() {
     cy.request( {
@@ -79,7 +67,6 @@ module.exports = {
     createReservationPayload,
     viewReservationRequest,
     createReservationRequest,
-    //deleteReservationRequest,
     performLogout
 
 }
