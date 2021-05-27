@@ -2,6 +2,7 @@
 
 import * as room from '../helpers/roomHelpers'
 import * as bill from '../helpers/billHelpers'
+import * as reservation from '../helpers/reservationHelpers'
 
 
 describe('Test suite', () => {
@@ -58,5 +59,20 @@ describe('Test suite', () => {
            bill.performLogout()
            
         }))
+})
+
+
+it('View  reservation', () => {
+    cy.authenticate().then((response => {
+       reservation.viewReservationRequest()
+       reservation.performLogout()
+       
+    }))
+})
+it('Create a new reservation', () => {
+    cy.authenticate().then((response => {
+        reservation.createReservationRequest()
+        reservation.performLogout()
+    }))
 })
 })
