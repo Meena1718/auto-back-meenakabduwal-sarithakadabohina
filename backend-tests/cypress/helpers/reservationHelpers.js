@@ -9,10 +9,10 @@ const LOGOUT_RESERVATION_ENDPOINT = 'http://localhost:3000/api/logout'
 function createReservationPayload() {
     let reservationpayload = {
         "client":faker.name.firstName(),
-        "room":"1",
-        "bill":"1",
-        "start":faker.date.weekday(),
-       "end":faker.date.weekday()
+        "room":faker.datatype.number(),
+        "bill":faker.datatype.number(),
+        "start":faker.date.recent(),
+       "end":faker.date.future()
     }
     return reservationpayload
 }
@@ -48,6 +48,20 @@ function createReservationRequest() {
 }))
 }
 
+
+/*function deleteReservationRequest(idToDelete){
+    cy.request({
+        method: 'DELETE',
+        url:'http://localhost:3000/api/reservation/'+idToDelete,
+        headers: {
+            'X-User-Auth':JSON.stringify(Cypress.env().loginToken), 
+            'Content-Type': 'application/json'
+        },                              
+    }).then((response => {
+        expect(response.status).to.eq(200)
+    }))
+}*/
+
 function performLogout() {
     cy.request( {
         method:'POST',
@@ -65,6 +79,7 @@ module.exports = {
     createReservationPayload,
     viewReservationRequest,
     createReservationRequest,
+    //deleteReservationRequest,
     performLogout
 
 }

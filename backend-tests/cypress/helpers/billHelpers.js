@@ -48,6 +48,25 @@ function createBillRequest() {
         Cypress.env({lastID : response.body.id})
 }))
 }
+function editBillRequest(idToEdit){
+    cy.request({
+        method: 'PUT',
+        url:'http://localhost:3000/api/bill/'+idToEdit,
+        headers: {
+            'X-User-Auth':JSON.stringify(Cypress.env().loginToken), 
+            'Content-Type': 'application/json'
+        },
+        body:{
+            "id":idToEdit,
+            "value":"4800",
+            "paid":false
+            
+           }                              
+    }).then((response => {
+        expect(response.status).to.eq(200)
+        cy.log(JSON.stringify(response.body))
+    }))
+}
  
 
 function deleteBillRequest(idToDelete){
@@ -81,6 +100,7 @@ module.exports = {
     createBillPayload,
     viewBillRequest,
     createBillRequest,
+    editBillRequest,
     deleteBillRequest,
     performLogout
 }

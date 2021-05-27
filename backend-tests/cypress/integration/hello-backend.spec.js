@@ -50,6 +50,14 @@ describe('Test suite', () => {
             bill.performLogout()
         }))
     })
+
+    it('Edit a bill', () => {
+        cy.authenticate().then((response =>{
+            bill.createBillRequest()
+            bill.editBillRequest(Cypress.env().lastID)
+            bill.performLogout()
+        }))
+    })
     
     
     it('Delete a bill', () => {
@@ -76,3 +84,6 @@ it('Create a new reservation', () => {
     }))
 })
 })
+
+
+
